@@ -1,0 +1,72 @@
+\documentclass[]{article}
+
+%opening
+\title{a card game or some shit like that}
+\author{some guy who cant write titles}
+\date{}
+\usepackage{amssymb}
+\usepackage[margin=1.5in]{geometry}
+
+\begin{document}
+{\fontfamily{cmss}\selectfont
+\maketitle
+
+\section*{Introduction}
+	This is a DitV inspired rpg where the driving randomness is playing cards rather than dice. A player is represented in game by their deck, and draws a hand at the beginning of a conflict.
+	
+\section*{Character Creation}
+	First, you are born. Draw six cards from an unweighted deck. These represent who you are as a child, not having decided who you want to be yet. Next, separate the deck that you drew from out by suit, and separate each suit out into 1-5 and 6-10. Now run a series of prequel scenes. In each scene, name a level of conflict; after the scene you'll draw one card from both suits associated with it. If you win the stakes in the conflict, you'll draw from the higher deck; if you lose, from the lower. You can have as many prequel scenes as you want, but after each one you'll have one less card in your hand for the conflict. Record the story of each conflict, along with the cards you got as a result, on your character sheet. %TODO make a character sheet
+	
+	In any prequel encounter, you can work with someone else and both use the resulting story for your characters. If you do this, you each get an extra card as a result, from the suit of your choice (as long as it matches the conflict level). You can only do this once for each other member of your party.
+\newpage
+\section*{Conflict}
+	The local pastor has found out that his coworker isn't \textit{quite} human. He's on his way to deal with that; with a shotgun. You want to stop him.
+	
+	\subsection*{Choosing the Stakes}
+		A conflict starts by agreeing on the stakes. Each participant has a reason to resorting to conflict; these should be made clear, and what happens if a participant wins should be agreed upon. It is important to recognize that this step is meta; this is a discussion between the players and the GM about a game mechanic, not a discussion between characters about what they'll agree to do when the conflict ends. The players have to abide by this contract; their characters do not have to be happy about it, and can feel free to attempt to subvert it. In our example conflict, the stakes are; do you stop the pastor from popping his pal? However, even if you do stop him there's nothing that says he can't necessarily try again later, or try poison instead. In this stage the GM also chooses a suit that will be trump for this encounter. This will depend on the setting of the encounter. A chess game would be $\diamondsuit$; a gunfight would be $\spadesuit$. While this doesn't forbid other cards from being played, the trump suit will be more powerful. Once you have done this, choose who will go first. If it isn't obvious who should start the conflict from setting the scene, the participant with the lowest trump card in their hand should open. Break ties by moving up through trump.
+		
+	\subsection*{Actions in Combat.}
+		\begin{itemize}
+			\item \textbf{Attack}
+			
+			On your turn, if you have resolved all open attacks against you, you can attack another player. You do this by placing a card in front of that player. That card must be the same suit as a card that your enemy has taken as a wound in this combat. The exception to this is that if you had no attacks to resolve at the beginning of your turn, you can attack with any suit. When you place that card, you also have to explain what that card represents in the game world. For instance, you could play $5\heartsuit$ in front of the pastor, saying that it was an appeal to his better nature.
+			
+			\item \textbf{Defend}
+			
+			On your turn, if you have open attacks against you, you can resolve them by covering them with a greater or equal card of the same suit, or any card in the trump suit (though trump cards need to be covered by higher trump cards). Cards are worth the number written on them, with aces being worth 1 and all face cards worth 10. If you manage to defend against all attacks active against you, push the stacks of cards to enemies of your choice (they need not all go to the same enemy). Treat these as attacks with value equal to the card on the top of the pile. The same rules about suits apply to attacks made in this way as standard attacks. If no enemy can be attacked, the cards simply leave play.%lots of levers here
+			
+			\item \textbf{Deflect}
+			
+			If you have a card in your hand  that matches the number of a card you are being attacked with, you can play it and push both cards to an opponent as two separate attacks. These attacks need not follow the standard rules about suits.
+			
+			\item \textbf{Take a Wound}
+			
+			If you can't or wont defend an open attack against you, you can instead be wounded by it. Place the attack in front of you sideways to represent that it is no longer active. You can only take two wounds in a conflict. If you are forced to take a third wound, you have to concede.
+			
+			\item \textbf{Concede}
+			
+			If you feel that this battle isn't winnable, you can at any time concede and withdraw from the fight. You take all open attacks against you as wounds, and give up the stakes. However, you can't be attacked further, which may prevent more wounds.
+		\end{itemize}
+		
+	\subsection*{Magic}
+		Face cards aren't just valuable combat cards. They represent magic, actions beyond what is possible in the everyday. When you play a face card, in addition to the utility described above, you can do one of the following:
+		\begin{itemize}
+			\item \textbf{Jacks} \begin{itemize}
+				\item Remove an attack of the same suit as the jack from play
+				\item Move the top card of any one attack to any other attack (as long as there are other cards in the attack, and the attack moved to could be defended by the moved card)
+			\end{itemize}
+			\item \textbf{Queens} \begin{itemize}
+				\item Draw a new card from the top of your deck
+				\item Split the top card of an attack into a new attack against the same player
+			\end{itemize}
+			\item \textbf{Kings} \begin{itemize}
+				\item Take the top card of an attack into your hand (it will go back to its owner at the end of the conflict)
+				\item Spread all cards of an attack into separate attacks against the same player
+			\end{itemize}
+		\end{itemize}
+		These are all immensely powerful abilities to have within the game; however, they come at a cost. Whenever you use a magic card, draw cards off of the top of your deck until you reach a non spell card. Place all of the spell cards at the bottom of your deck, then remove the non spell card from your deck permanently. Burn it if you like. cut it into strips and weave them into a tiny patchwork. But you can never use it again.
+		
+		After every conflict, as you are updating your character sheet, check if you still have any cards that are not spell cards or wounds. If you don't, you become consumed by magic. Consult your GM, and cry.
+			
+}
+\end{document}
