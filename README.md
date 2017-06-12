@@ -1,23 +1,24 @@
 # Card RPG
-a RPG system using cards as a random variable
+This is an rpg system inspired by DitV and Durak. In contrast to most rpg systems, the random variable is playing cards rather than dice. A player is represented in game by their deck.<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-## Table of Contents
+- [Card RPG](#card-rpg)
+	- [Character Creation](#character-creation)
+	- [Conflict](#conflict)
+		- [Choosing the Stakes](#choosing-the-stakes)
+		- [Actions in Conflict](#actions-in-conflict)
+			- [Attacking](#attacking)
+			- [Defending](#defending)
+			- [Deflecting](#deflecting)
+			- [Taking a Wound](#taking-a-wound)
+			- [Conceding](#conceding)
+		- [Magic](#magic)
 
-* [Introduction](#introduction)
-* [Character Creation](#character-creation)
-* [Conflict](#conflict)
-	* [Choosing the Stakes](#choosing-the-stakes)
-	* [Actions in Conflict](#actions-in-conflict)
-	* [Magic](#magic)
-
-## Introduction
-
-This is a DitV inspired rpg where the driving randomness is playing cards rather than dice. A player is represented in game by their deck, and draws a hand at the beginning of a conflict.
+<!-- /TOC -->
 
 ## Character Creation
 
 First, you are born. Draw six cards from an unweighted deck. These represent who you are as a child, not having decided who you want to be yet. Next, separate the deck that you drew from out by suit, and separate each suit out into 1-5 and 6-10. Now run a series of prequel scenes. In each scene, name a level of conflict; after the scene you'll draw one card from both suits associated with it. If you win the stakes in the conflict, you'll draw from the higher deck; if you lose, from the lower. You can have as many prequel scenes as you want, but after each one you'll have one less card in your hand for the conflict. Record the story of each conflict, along with the cards you got as a result, on your character sheet.
-	
+
 In any prequel encounter, you can work with someone else and both use the resulting story for your characters. If you do this, you each get an extra card as a result, from the suit of your choice (as long as it matches the conflict level). You can only do this once for each other member of your party.
 
 
