@@ -36,20 +36,20 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      x:props.x,
-      y:props.y,
-      oldX:0,
-      oldY:0,
+      x:this.props.x,
+      y:this.props.y
     }
-    this.updatePosition = this.updatePosition.bind(this)
+    this.updatePosition = this.props.cbs.updatePosition(this)
+    this.select = this.props.cbs.select(this)
+    this.deselect = this.props.cbs.deselect(this)
   }
 
   render() {
     return (
       <g className="card"
-        onMouseDown={({pageX:x, pageY:y})=> this.setState({oldX:x, oldY:y, selected:true})}
-        onMouseUp={()=> this.setState({selected:false})}
-        onMouseLeave={()=> this.setState({selected:false})}
+        onMouseDown={this.select}
+        onMouseUp={this.deselect}
+        onMouseLeave={this.deselect}
         onMouseMove={this.updatePosition}
         transform={'rotate('+(this.props.rotate||0)+
           ') translate('+(this.state.x||0)+' '+(this.state.y||0)+
@@ -69,15 +69,14 @@ class Card extends Component {
     )
   }
 
-  updatePosition({pageX:newX, pageY:newY}) {//returns state update function given event context
-    if (!this.state.selected) {return null}
-    this.props.lift(this.props.height)
-    this.setState((prev, props)=> {
+  componentWillReceiveProps({evt}) {//currently only  used for updating position after card is reordered
+    if ((this.props.evt === evt) || !evt) {return null};
+    this.setState(({x, y, oldX, oldY})=>{
       return {
-        x:prev.x+newX-prev.oldX,
-        y:prev.y+newY-prev.oldY,
-        oldX: newX,
-        oldY: newY
+        x:x+evt.x-oldX,
+        y:y+evt.y-oldY,
+        oldX:evt.x,
+        oldY:evt.y
       }
     })
   }

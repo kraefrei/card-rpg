@@ -16,8 +16,13 @@ class App extends Component {
       cards:[],
       nextKey: 1
     };
+
     this.addRandomCard = this.addRandomCard.bind(this)
-    this.lift = this.lift.bind(this)
+    this.cbs = {
+      select: this.select.bind(this),
+      deselect: this.deselect.bind(this),
+      updatePosition: this.updatePosition.bind(this),
+    }
   }
 
   render() {
@@ -45,20 +50,40 @@ class App extends Component {
         suit:_.random(1,4),
         rank:_.random(1,13),
         scale:100,
-        lift: this.lift,
-        height: prev.nextKey,
+        cbs:this.cbs,
+        id: prev.nextKey,
         key:prev.nextKey
       }]),
       nextKey:prev.nextKey+1
     }})
   }
 
-  lift (key) {
-    this.setState(({cards})=>{
-      const updated = _.cloneDeep(cards)
-      updated.push(updated.splice(_.findIndex(updated, {key:key})-1, 1)[0])
-      return {cards:updated}
-    })
+  select (card) {
+    return ({screenX:x, screenY:y})=> {
+      card.setState({oldX:x, oldY:y, selected:true})
+    }
+  }
+
+  deselect (card) {
+    return ()=> {card.setState({selected:false})}
+  }
+
+  updatePosition (card) {
+    return ({screenX:x, screenY:y})=> {
+      if (!card.state.selected) {return null}
+      this.setState( prev=> {
+        return {
+          cards: _.flow([
+            _.cloneDeep,
+            _.filter(a=>{return a.key!==card.props.id}),
+            cards=>{
+              cards.push(_.merge(card.props, {evt: {x:x, y:y}, key:card.props.id}))
+              return cards
+            }
+          ])(prev.cards)
+        }
+      }) 
+    }
   }
 }
 
