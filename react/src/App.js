@@ -1,90 +1,59 @@
-import React, { Component } from 'react';
-import './App.css';
-import Card from './components/card/Card.js';
-import _ from 'lodash/fp'
+import React from 'react';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Table from './components/Table.js';
+import { cardRecord } from './components/Card.js'
+import { Record, Map } from 'immutable';
+import { types } from './components/actionCreators.js';
 
-const svgStyle = {
-  width:'100vw',
-  height:'100vh'
-};
+const initState = Record({
+  items: new Map(),
+  maxHeight:0,
+  maxKey:0,
+  mouseX:0,
+  mouseY:0
+})()
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      cards:[],
-      nextKey: 1
-    };
-
-    this.addRandomCard = this.addRandomCard.bind(this)
-    this.cbs = {
-      select: this.select.bind(this),
-      deselect: this.deselect.bind(this),
-      updatePosition: this.updatePosition.bind(this),
-    }
-  }
-
-  render() {
-    let drawnCards = this.state.cards.map((props)=> {
-      return <Card {...props} />;
-    });
-    return (
-      <div className="App">
-        <svg
-          onContextMenu={this.addRandomCard}
-          style={svgStyle}>
-          {drawnCards}
-        </svg>
-      </div>
-    );
-  }
-
-  addRandomCard (evt) {
-    evt.preventDefault()
-    let {screenX:x, screenY:y} = evt //destructuring to save before synthetic event gets reused
-    this.setState(prev=> {return {
-      cards:prev.cards.concat([{
-        x:x,
-        y:y,
-        suit:_.random(1,4),
-        rank:_.random(1,13),
-        scale:100,
-        cbs:this.cbs,
-        id: prev.nextKey,
-        key:prev.nextKey
-      }]),
-      nextKey:prev.nextKey+1
-    }})
-  }
-
-  select (card) {
-    return ({screenX:x, screenY:y})=> {
-      card.setState({oldX:x, oldY:y, selected:true})
-    }
-  }
-
-  deselect (card) {
-    return ()=> {card.setState({selected:false})}
-  }
-
-  updatePosition (card) {
-    return ({screenX:x, screenY:y})=> {
-      if (!card.state.selected) {return null}
-      this.setState( prev=> {
-        return {
-          cards: _.flow([
-            _.cloneDeep,
-            _.filter(a=>{return a.key!==card.props.id}),
-            cards=>{
-              cards.push(_.merge(card.props, {evt: {x:x, y:y}, key:card.props.id}))
-              return cards
-            }
-          ])(prev.cards)
+function rootReducer (state = initState, action) {
+  switch (action.type) {
+    case types.NEW_CARD:
+      return state.setIn(
+        ['items', state.maxKey],
+        new cardRecord(action.props).set('key', state.maxKey)
+      ).update('maxKey', a=>a+1)
+    case types.SELECT:
+      if (state.items.get(action.key).selected) {return state}
+      return state.updateIn(['items', action.key], a =>{
+        return a.set('selected', true).set(
+          'height',
+          state.maxHeight+1
+        )
+      }).update(
+        'maxHeight',
+         a=>a+1//might eventually cause problems
+       ).set('mouseX', action.x).set('mouseY', action.y)
+    case types.DESELECT:
+      return state.updateIn(['items', action.key], a => a.set('selected', false))
+    case types.MOVE:
+      return state.updateIn(
+        ['items', action.key], a=> {
+          return (a
+            .update('x', x=>x+action.x-state.mouseX)
+            .update('y', y=>y+action.y-state.mouseY)
+          )
         }
-      }) 
-    }
+      ).set('mouseX', action.x).set('mouseY', action.y)
+    default:
+      return state
   }
 }
 
-export default App;
+const store = createStore(rootReducer)
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Table />
+    </Provider>
+  )
+}
