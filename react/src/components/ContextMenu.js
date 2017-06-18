@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { closeMenu } from '../actions/menu.js';
+import {multiAction} from '../actions/util.js';
 
 
 const backdropStyle = {
@@ -20,7 +21,7 @@ function mapStateToProps ({menu:state}) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return {dispatch, closeMenu}
+  return {dispatch, closeMenu, multiAction}
 }
 
 function ContextMenu ({
@@ -49,7 +50,10 @@ function ContextMenu ({
               transform={`translate(0 ${i*8})`}
               key={i}
               onClick={
-                ()=>dispatch(entryAction({x, y, targetKey}))
+                ()=>dispatch(multiAction(
+                  entryAction({x, y, targetKey}),
+                  closeMenu()
+                ))
               }
             >
               <rect
