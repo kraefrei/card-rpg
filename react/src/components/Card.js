@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash/fp';
 import {Record} from 'immutable';
-import { selectCard, deselectCard, moveCard } from './actionCreators.js';
+import { selectCard, deselectCard, moveCard } from '../actions/cards.js';
+import {openMenu} from '../actions/menu.js'
 
 
 const backgroundStyle = (selected)=>{
@@ -38,23 +39,38 @@ export const cardRecord = Record({
   suit:0,
   rank:0,
   height:0,
-  faceup:true,
+  facedown:false,
   selected:false,
   key:undefined
 })
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({selectCard, deselectCard, moveCard}, dispatch)
+  return bindActionCreators({
+    selectCard,
+    deselectCard,
+    moveCard,
+    openMenu}, dispatch)
 }
 
-function unboundCard ({
+function mapStateToProps ({cards:{items}}, {id}) {
+  return {record: items.get(id)}
+}
+
+function Card ({
   record:{rotate, x, y, scale, suit, rank, selected, key},
   selectCard,
   deselectCard,
-  moveCard
+  moveCard,
+  openMenu
 }) {
   return (
     <g className="card"
+      onContextMenu={
+        (evt)=> {
+          evt.preventDefault()
+          openMenu(evt.screenX, evt.screenY, 'Card', key)
+        }
+      }
       onMouseDown={({screenX:x, screenY:y})=>selectCard(key, x, y)}
       onMouseUp={()=>deselectCard(key)}
       onMouseLeave={()=>deselectCard(key)}
@@ -79,4 +95,4 @@ function unboundCard ({
   )
 }
 
-export const Card = connect(null, mapDispatchToProps)(unboundCard)
+export default connect(mapStateToProps, mapDispatchToProps)(Card)

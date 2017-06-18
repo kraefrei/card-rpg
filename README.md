@@ -1,17 +1,26 @@
 # Card RPG
-This is an rpg system inspired by DitV and Durak. In contrast to most rpg systems, the random variable is playing cards rather than dice. A player is represented in game by their deck.<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+This is an rpg system inspired by DitV and Durak. In contrast to most rpg systems, the random variable is playing cards rather than dice. A player is represented in game by their deck.
 
-- [Card RPG](#card-rpg)
-	- [Character Creation](#character-creation)
-	- [Conflict](#conflict)
-		- [Choosing the Stakes](#choosing-the-stakes)
-		- [Actions in Conflict](#actions-in-conflict)
-			- [Attacking](#attacking)
-			- [Defending](#defending)
-			- [Deflecting](#deflecting)
-			- [Taking a Wound](#taking-a-wound)
-			- [Conceding](#conceding)
-		- [Magic](#magic)
+## Table of Contents
+
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Table of Contents](#table-of-contents)
+- [Character Creation](#character-creation)
+- [Conflict](#conflict)
+	- [Choosing the Stakes](#choosing-the-stakes)
+	- [Actions in Conflict](#actions-in-conflict)
+		- [Attacking](#attacking)
+		- [Defending](#defending)
+		- [Deflecting](#deflecting)
+		- [Taking a Wound](#taking-a-wound)
+		- [Conceding](#conceding)
+	- [Magic](#magic)
+- [The GM](#the-gm)
+	- [NPC's in Conflict](#npcs-in-conflict)
+	- [Environments](#environments)
+		- [Attack Types](#attack-types)
+		- [Attributes](#attributes)
 
 <!-- /TOC -->
 
@@ -80,3 +89,29 @@ Face cards aren't just valuable combat cards. They represent the impossible, the
 	* Spread all cards in an attack into different attacks against the same player
 
 These are all immensely powerful effects to have in game, but they come at a cost. Jacks and queens cost one to play, while kings cost two. Keep track of the cost you incur during a conflict. After it has ended, and you've shuffled your hand back into your deck, draw cards from the top of your deck. Each time you draw a card that is not a face card, remove it from your deck; this pays for one unit of cost. Once you have paid down all of the cost, take the cards that you removed and destroy them. You can't get them back; the magic has consumed that part of your character. If at any time you have no cards that are not spell cards or wounds, you are consumed by magic. This essentially means that you are dead, but consult your GM for the details of how it should be handled.
+
+## The GM
+
+The game is run by a GM, who creates the world around you and provides you with conflicts to overcome. However, unlike in more traditional RPG's, the GM is not all powerful. Instead, they describe everything that is happening, and if you disagree with something you can challenge it at any time. At that point a conflict starts, and stakes are negotiated.
+
+### NPC's in Conflict
+
+Any people controlled by the GM who get wrapped up in a conflict will of course need a hand to represent them. Occasionally these people may be fully fleshed out characters with decks of their own that the GM has created, but more often the GM will just save a deck or two for generating all of the NPCs. To generate an NPC, the GM draws 12 cards off of the top of one of these decks, and then goes through the following procedure until they only have six. It is important to follow each step one card at a time, rather than all at once, to make sure you end up with six.
+
+1. Choose a suit that this character will be bad at. Discard all cards of that suit.
+2. Choose a suit that this character will be good at. Keep all cards of that suit.
+	* If there are more than six cards in that suit, discard the best, then the worst.
+	* Repeat that until there are no more than three cards of that suit.
+3. Repeat the above until you reach six cards.
+
+### Environments
+
+In addition to people nearby, the GM also runs the environment around the conflict. The environment (usually) has no vested interest in which way a conflict will go. It will hurt or help both sides equally, unless one side can find a way to use it to their advantage. Since environments clearly make no decisions, they are represented by a deck that the GM simply draws off of the top of rather than by a hand.
+
+#### Attack Types
+
+An environment has two different attack types, governed by the color of the cards they use to attack. Red cards attack all participants at once. On your turn, if there is a red environment card on the table, it counts as an attack against you. However, if you deflect it, while you are allowed to act as though it is no longer an attack against you, you don't get to redirect it; it remains in the control of the environment. Similarly, if you cover it, it is simply removed from play. A black card is directed at a single target, like a normal attack. However, the target is not chosen by the GM. Instead, when the environment plays a black card all participants must select a card to reveal from their hand. The player who reveals the lowest card gets attacked.
+
+#### Attributes
+
+An environment is described by a set of attributes. These attributes define how the environment will behave, and what sort of cards it has access to. <!--TODO make attributes-->
